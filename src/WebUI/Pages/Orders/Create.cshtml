@@ -1,0 +1,29 @@
+﻿@page
+@model WebUI.Pages.Orders.CreateModel
+@{
+    ViewData["Title"] = "Create Order";
+}
+<section class="panel">
+<h1>Create Order</h1>
+<form id="orderForm" class="form-grid" novalidate>
+    <label for="customerId">Customer Id</label>
+    <input id="customerId" name="CustomerId" placeholder="e.g. 6f1b2c7a-2f6b-4a3a-9c9e-3e8e1d1a2b3c" required />
+
+    <div id="items"></div>
+    <button type="button" id="addItem" class="pill-btn">Add Item</button>
+
+    <label for="discountSelect">Discount</label>
+    <select id="discountSelect">
+        <option value="None">None</option>
+        <option value="Percent10">10% Off</option>
+        <option value="Percent20">20% Off</option>
+        <option value="Fixed5">$5 Off</option>
+        <option value="Fixed10">$10 Off</option>
+    </select>
+
+    <div id="formError" class="text-danger"></div>
+    <button type="submit" class="cta-btn">Create</button>
+</form>
+</section>
+
+<script type="module" src="/js/orderForm.js"></script>

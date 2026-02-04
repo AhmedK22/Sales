@@ -1,0 +1,32 @@
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS / VS Code
+.vs/
+.vscode/
+
+# Rider / JetBrains
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# NuGet
+packages/
+
+# Publish outputs
+publish/
+
+# Test results
+TestResults/

@@ -1,0 +1,21 @@
+﻿@page
+@model WebUI.Pages.Orders.IndexModel
+@{
+    ViewData["Title"] = "Orders";
+}
+<section class="panel">
+<div class="orders-toolbar">
+    <h1 class="mb-0">Orders</h1>
+    <a class="cta-btn" href="/Orders/Create">Create Order</a>
+</div>
+<input id="search" class="orders-search" placeholder="Search orders" />
+<div id="ordersList">
+    @{ await Html.RenderPartialAsync("_OrderListPartial", Model.Orders); }
+</div>
+</section>
+
+<script type="module" src="/js/debounce.js"></script>
+<script type="module">
+import { initList } from '/js/debounce.js';
+initList('http://localhost:5045/api/orders', '#search', '#ordersList');
+</script>

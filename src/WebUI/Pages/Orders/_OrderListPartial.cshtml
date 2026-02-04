@@ -1,0 +1,53 @@
+@model IEnumerable<WebUI.Models.OrderDto>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="panel">
+        <h3 class="mb-2">No orders yet</h3>
+        <p class="mb-0">Create your first order to see it listed here.</p>
+    </div>
+}
+else
+{
+    <div class="mb-2 text-muted">Showing @Model.Count() orders</div>
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var o in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="fw-semibold">@o.Id</div>
+                    </td>
+                    <td>@o.CustomerId</td>
+                    <td>@o.Items.Count</td>
+                    <td>@o.Total.ToString("0.00")</td>
+                    <td>@o.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>
+                        <button data-id="@o.Id" class="deleteBtn pill-btn">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script type="module">
+    document.querySelectorAll('.deleteBtn').forEach(btn => {
+        btn.addEventListener('click', async e => {
+            if (!confirm('Delete order?')) return;
+            const id = btn.dataset.id;
+            await fetch('http://localhost:5045/api/orders/' + id, { method: 'DELETE' });
+            location.reload();
+        });
+    });
+</script>
